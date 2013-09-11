@@ -1,0 +1,45 @@
+unit Base.BuilderSQL.Utils;
+
+interface
+
+uses
+ Base.Utils,
+ Base.Collections;
+
+
+implementation
+
+  function GetFields( const ACollectionsSQL: TCollectionsSQL ): string;
+  var
+    Indice: Integer;
+  begin
+    Result:= EmptyStr;
+
+    for Indice := Low( ACollectionsSQL.Collection ) to High( ACollectionsSQL.Collection ) do
+      Result:= Result + IfThen( Indice > 0, ', ' ) + ACollectionsSQL.Collection[Indice].Field +
+        ' = ' + VariantToString ( ACollectionsSQL.Collection[Indice].Value );
+  end;
+
+  function GetWheres(): string;
+
+    function GetWhere(): string;
+    var
+      Indice: Integer;
+    begin
+      for Indice := Low( Wheres.Collection ) to High( Wheres.Collection ) do
+        Result:= Result + IfThen( Indice > 0, Wheres.LogicalAsText( Wheres.Collection[Indice].OperatorLogical ) ) + Wheres.Collection[Indice].Field +
+          Wheres.ComparisonAsText( Wheres.Collection[Indice].OperatorComparison ) + VariantToString ( Wheres.Collection[Indice].Value );
+    end;
+
+  begin
+    Result:= EmptyStr;
+
+    if ( not ( Wheres.IsEmpty ) ) then
+    begin
+      Result:= ' where ' + GetWhere()
+    end;
+
+  end;
+
+
+end.

@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{BE52F39C-3052-4061-9E8C-90F03491F116}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="BuilderSQLApp.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Test\BuilderSQLTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="BuilderSQLApp">
+        <MSBuild Projects="BuilderSQLApp.dproj"/>
+    </Target>
+    <Target Name="BuilderSQLApp:Clean">
+        <MSBuild Projects="BuilderSQLApp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BuilderSQLApp:Make">
+        <MSBuild Projects="BuilderSQLApp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="BuilderSQLTests">
+        <MSBuild Projects="Test\BuilderSQLTests.dproj"/>
+    </Target>
+    <Target Name="BuilderSQLTests:Clean">
+        <MSBuild Projects="Test\BuilderSQLTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BuilderSQLTests:Make">
+        <MSBuild Projects="Test\BuilderSQLTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="BuilderSQLApp;BuilderSQLTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="BuilderSQLApp:Clean;BuilderSQLTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="BuilderSQLApp:Make;BuilderSQLTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -1,0 +1,14 @@
+type
+  TPerson = class(TObject, ISwimmer)
+   ...
+  end;
+var
+  swimmer : ISwimmer;
+  person : TPerson;
+begin
+  swimmer := TPerson.Create;
+  person := swimmer as TPerson;
+  person := TPerson(swimmer);
+
+
+  http://edn.embarcadero.com/article/30125

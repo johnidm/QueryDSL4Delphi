@@ -1,0 +1,77 @@
+unit Base.BuilderSQL.Update;
+
+interface
+
+uses
+  Base.BuilderSQL, Base.Utils;
+
+type
+  TUpdateSQL = class( TBuilderSQL )
+    function GetSQL(): string;  override;
+    class function Builder(): TBuilderSQL;
+  end;
+
+implementation
+
+uses
+  System.SysUtils, System.StrUtils;
+
+{ TUpdateSQL }
+
+class function TUpdateSQL.Builder: TBuilderSQL;
+begin
+  Result:= TUpdateSQL.Create();
+end;
+
+function TUpdateSQL.GetSQL: string;
+
+  function GetFields(): string;
+  var
+    Indice: Integer;
+  begin
+    Result:= EmptyStr;
+
+    for Indice := Low( Fields.Collection ) to High( Fields.Collection ) do
+      Result:= Result + IfThen( Indice > 0, ', ' ) + Fields.Collection[Indice].Field +
+        ' = ' + VariantToString ( Fields.Collection[Indice].Value );
+  end;
+
+  function GetWheres(): string;
+
+    function GetWhere(): string;
+    var
+      Indice: Integer;
+    begin
+      for Indice := Low( Wheres.Collection ) to High( Wheres.Collection ) do
+        Result:= Result + IfThen( Indice > 0, Wheres.LogicalAsText( Wheres.Collection[Indice].OperatorLogical ) ) + Wheres.Collection[Indice].Field +
+          Wheres.Conv( Wheres.Collection[Indice].OperatorComparison ) + VariantToString ( Wheres.Collection[Indice].Value );
+
+    end;
+
+  begin
+    Result:= EmptyStr;
+
+    if ( not ( Wheres.IsEmpty ) ) then
+    begin
+      Result:= ' where ' + GetWhere()
+
+
+
+    end;
+
+  end;
+
+
+begin
+  Result:=
+    'update ' + Table + ' set ' +
+
+    GetFields() +
+
+    GetWheres();
+
+
+
+end;
+
+end.

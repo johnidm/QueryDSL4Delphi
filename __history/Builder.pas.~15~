@@ -1,0 +1,19 @@
+unit Builder;
+
+interface
+
+type
+  IBuilder<T> = interface ['{9FA3224F-ED1B-48FE-8BF7-EB11084E51EE}']
+
+    function GetSQL<T>(): string ;
+  end;
+
+  TBuilder<T> = class ( TInterfacedObject, IBuilder<T> )
+
+
+
+  end;
+
+implementation
+
+end.

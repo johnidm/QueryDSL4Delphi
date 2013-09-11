@@ -1,0 +1,18 @@
+program BuilderSQLApp;
+
+uses
+  Vcl.Forms,
+  App in 'App.pas' {Form2},
+  Base.CommandSQL in 'Base.CommandSQL.pas',
+  Base.Collections in 'Base.Collections.pas',
+  Base.BuilderSQL in 'Base.BuilderSQL.pas',
+  Base.BuilderSQL.Insert in 'Base.BuilderSQL.Insert.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm2, Form2);
+  Application.Run;
+end.

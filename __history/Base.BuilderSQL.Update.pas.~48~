@@ -1,0 +1,43 @@
+unit Base.BuilderSQL.Update;
+
+interface
+
+uses
+  Base.BuilderSQL, Base.Utils;
+
+type
+  TUpdateSQL = class( TBuilderSQL )
+    function GetSQL(): string;  override;
+    class function Builder(): TBuilderSQL;
+  end;
+
+implementation
+
+uses
+  System.SysUtils, System.StrUtils;
+
+{ TUpdateSQL }
+
+class function TUpdateSQL.Builder: TBuilderSQL;
+begin
+  Result:= TUpdateSQL.Create();
+end;
+
+function TUpdateSQL.GetSQL: string;
+
+
+
+
+begin
+  Result:=
+    'update ' + Table + ' set ' +
+
+    GetFields() +
+
+    GetWheres();
+
+
+
+end;
+
+end.
