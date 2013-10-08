@@ -26,7 +26,7 @@ end;
 function TInsertSQL.GetSQL: string;
 begin
   Result:=
-    'insert into ' + Table + ' ( ' +
+    'insert into ' + FTable + ' ( ' +
 
      GetListFields( Fields ) +
 

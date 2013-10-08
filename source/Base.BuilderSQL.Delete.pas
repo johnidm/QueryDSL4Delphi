@@ -26,7 +26,7 @@ end;
 function TDeleteSQL.GetSQL: string;
 begin
   Result:=
-    'delete from ' + Table +
+    'delete from ' + FTable +
 
     GetWheres( Wheres )
 end;

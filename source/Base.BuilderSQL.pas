@@ -7,7 +7,8 @@ uses
 
 type
   IBuilderSQL = interface ['{164FDB1F-5365-4AE7-8253-8D6789C395DE}']
-    function AddTable( const ATable: string ): IBuilderSQL;
+    function Table( const ATable: string ): IBuilderSQL;
+
     function AddField( const AField: string; const AValue: Variant ): IBuilderSQL;
 
     function AddWhere( const AField: string; const AValue: Variant;
@@ -25,12 +26,12 @@ type
 
   TBuilderSQL = class ( TInterfacedObject, IBuilderSQL )
   strict protected
-    Table: string;
+    FTable: string;
     Fields: TCollectionsSQL;
 
     Wheres: TCollectionsSQL;
   public
-    function AddTable( const ATable: string ): IBuilderSQL;
+    function Table( const ATable: string ): IBuilderSQL;
 
     function AddField( const AField: string; const AValue: Variant ): IBuilderSQL;
 
@@ -48,9 +49,9 @@ type
 
 implementation
 
-function TBuilderSQL.AddTable(const ATable: string): IBuilderSQL;
+function TBuilderSQL.Table(const ATable: string): IBuilderSQL;
 begin
-  Table:= ATable;
+  FTable:= ATable;
 
   Result:= Self ;
 end;

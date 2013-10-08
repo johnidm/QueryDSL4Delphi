@@ -30,7 +30,7 @@ begin
 
 
 
-    TDeleteSQL.Builder().AddTable( 'clientes' ).GetSQL()
+    TDeleteSQL.Builder().Table( 'clientes' ).GetSQL()
 
 
 
@@ -43,7 +43,7 @@ begin
   CheckEqualsString(
    'delete from dados where id = 1 and nome = ''Johni''',
 
-   TDeleteSQL.Builder().AddTable( 'dados'
+   TDeleteSQL.Builder().Table( 'dados'
    ).AddWhere( 'id', 1, topcompEqual ).AddWhereAnd( 'nome', 'Johni', topcompEqual ).GetSQL()
   );
 
@@ -55,7 +55,7 @@ begin
   CheckEqualsString(
     'delete from clientes where id = 1',
 
-    TDeleteSQL.Builder().AddTable( 'clientes' ).AddWhere( 'id', 1, topcompEqual ).GetSQL()
+    TDeleteSQL.Builder().Table( 'clientes' ).AddWhere( 'id', 1, topcompEqual ).GetSQL()
 
   );
 

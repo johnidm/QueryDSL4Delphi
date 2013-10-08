@@ -24,7 +24,7 @@ end;
 function TUpdateSQL.GetSQL: string;
 begin
   Result:=
-    'update ' + Table + ' set ' +
+    'update ' + FTable + ' set ' +
 
     GetFields( Fields ) +
 
