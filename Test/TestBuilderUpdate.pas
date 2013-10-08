@@ -28,7 +28,7 @@ begin
   CheckEqualsString(
     'update clientes set nome = ''Johni Douglas Marangon''',
 
-    TUpdateSQL.Builder().Table( 'clientes' ).AddField( 'nome', 'Johni Douglas Marangon' ).GetSQL()
+    TUpdateSQL.Builder().Table( 'clientes' ).AddField( 'nome', 'Johni Douglas Marangon' ).ToSQL()
 
 
   );
@@ -40,7 +40,7 @@ begin
     'update dados set campo01 = ''Texto do campo'', campo02 = 234',
 
     TUpdateSQL.Builder().Table( 'dados' ).AddField( 'campo01', 'Texto do campo' )
-      .AddField( 'campo02', 234 ).GetSQL()
+      .AddField( 'campo02', 234 ).ToSQL()
   );
 
 
@@ -56,7 +56,7 @@ begin
       .AddField( 'nome', 'Johni' )
       .AddField( 'data_nascimento', StrToDateTime( '01/01/2012' ) )
       .AddWhere( 'id', 1, topcompEqual )
-      .AddWhereAnd( 'nome', 'JOhni', topcompEqual ).GetSQL()
+      .AddWhereAnd( 'nome', 'JOhni', topcompEqual ).ToSQL()
 
   );
 
@@ -70,7 +70,7 @@ begin
 
     TUpdateSQL.Builder().Table( 'dados' ).AddField( 'nome', 'Johni' )
       .AddWhere( 'id', 1, topcompEqual )
-      .AddWhereOr( 'nome', 'JOhni', topcompEqual ).GetSQL()
+      .AddWhereOr( 'nome', 'JOhni', topcompEqual ).ToSQL()
 
   );
 end;
@@ -82,7 +82,7 @@ begin
   CheckEqualsString(
     'update dados set id = 1 where id = 1',
 
-    TUpdateSQL.Builder().Table( 'dados' ).AddField( 'id', 1 ).AddWhere( 'id', 1, topcompEqual).GetSQL()
+    TUpdateSQL.Builder().Table( 'dados' ).AddField( 'id', 1 ).AddWhere( 'id', 1, topcompEqual).ToSQL()
 
   );
 end;

@@ -8,7 +8,7 @@ uses
 
 type
   TDeleteSQL = class( TBuilderSQL )
-    function GetSQL(): string; override;
+    function ToSQL(): string; override;
     class function Builder(): TBuilderSQL;
   end;
 
@@ -23,7 +23,8 @@ end;
 
 
 
-function TDeleteSQL.GetSQL: string;
+function TDeleteSQL.ToSQL
+: string;
 begin
   Result:=
     'delete from ' + FTable +

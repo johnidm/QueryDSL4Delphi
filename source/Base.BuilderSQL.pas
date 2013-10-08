@@ -21,7 +21,7 @@ type
       const AOperatorComparison: TOperatorComparison ): IBuilderSQL;
 
 
-    function GetSQL(): string;
+    function ToSQL(): string;
   end;
 
   TBuilderSQL = class ( TInterfacedObject, IBuilderSQL )
@@ -44,7 +44,7 @@ type
     function AddWhereOr( const AField: string; const AValue: Variant;
       const AOperatorComparison: TOperatorComparison ): IBuilderSQL;
    
-    function GetSQL(): string; virtual;
+    function ToSQL(): string; virtual;
   end;
 
 implementation
@@ -94,7 +94,7 @@ end;
 
 
 
-function TBuilderSQL.GetSQL: string;
+function TBuilderSQL.ToSQL: string;
 begin
   //raise Exception.Create('Função não implementada');
 end;

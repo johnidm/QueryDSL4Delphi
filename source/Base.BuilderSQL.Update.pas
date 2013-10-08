@@ -8,7 +8,7 @@ uses
 
 type
   TUpdateSQL = class( TBuilderSQL )
-    function GetSQL(): string;  override;
+    function ToSQL(): string;  override;
     class function Builder(): TBuilderSQL;
   end;
 
@@ -21,7 +21,7 @@ begin
   Result:= TUpdateSQL.Create();
 end;
 
-function TUpdateSQL.GetSQL: string;
+function TUpdateSQL.ToSQL: string;
 begin
   Result:=
     'update ' + FTable + ' set ' +

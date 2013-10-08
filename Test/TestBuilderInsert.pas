@@ -44,7 +44,7 @@ begin
   CheckEqualsString(
     'insert into dados ( data ) values ( ''01.08.2015'' )',
 
-    TInsertSQL.Builder().Table( 'dados' ).AddField( 'data', data ) .GetSQL()
+    TInsertSQL.Builder().Table( 'dados' ).AddField( 'data', data ) .ToSQL()
 
   );
 end;
@@ -59,7 +59,7 @@ begin
 
   CheckEqualsString(
     'insert into dados ( tempo ) values ( ''01:05:06'' )',
-    TInsertSQL.Builder().Table( 'dados' ).AddField( 'tempo', tempo ).GetSQL
+    TInsertSQL.Builder().Table( 'dados' ).AddField( 'tempo', tempo ).ToSQL
   );
 
 end;
@@ -73,7 +73,7 @@ begin
   CheckEqualsString(
     'insert into dados ( data_tempo ) values ( '+ QuotedStr( FormatDateTime( 'dd.mm.yyyy hh:nn:sss', Now() ) ) + ' )',
 
-    TInsertSQL.Builder.Table( 'dados' ).AddField( 'data_tempo', data_tempo ).GetSQL
+    TInsertSQL.Builder.Table( 'dados' ).AddField( 'data_tempo', data_tempo ).ToSQL
   );
 end;
 
@@ -91,7 +91,7 @@ begin
   CheckEqualsString(
     'insert into dados ( valor ) values ( 1235.874 )',
 
-   TInsertSQL.Builder.Table('dados').AddField('valor', valor ).GetSQL()
+   TInsertSQL.Builder.Table('dados').AddField('valor', valor ).ToSQL()
 
 
   );
@@ -109,7 +109,7 @@ begin
   CheckEqualsString(
     'insert into dados ( valor ) values ( 12678.584 )',
 
-    TInsertSQL.Builder().Table( 'dados' ).AddField( 'valor', valor ).GetSQL()
+    TInsertSQL.Builder().Table( 'dados' ).AddField( 'valor', valor ).ToSQL()
 
   );
 
@@ -126,7 +126,7 @@ begin
 
   CheckEqualsString(
     'insert into dados ( valor ) values ( 1254.98 )',
-     TInsertSQL.Builder().Table( 'dados' ).AddField( 'valor', valor ).GetSQL()
+     TInsertSQL.Builder().Table( 'dados' ).AddField( 'valor', valor ).ToSQL()
   );
 
 end;
@@ -140,7 +140,7 @@ begin
 
       TInsertSQL.Builder()
         .Table( 'clientes' )
-        .AddField( 'id', 01 ).GetSQL()
+        .AddField( 'id', 01 ).ToSQL()
 
    );
 
@@ -157,7 +157,7 @@ begin
     'insert into dados ( id ) values ( 125 )',
 
 
-        TInsertSQL.Builder().Table( 'dados' ).AddField( 'id', id ).GetSQL()
+        TInsertSQL.Builder().Table( 'dados' ).AddField( 'id', id ).ToSQL()
 
    );
 
@@ -174,7 +174,7 @@ begin
     'insert into dados ( id ) values ( 123456789123456789 )',
 
 
-      TInsertSQL.Builder.Table( 'dados' ).AddField( 'id', id ).GetSQL()
+      TInsertSQL.Builder.Table( 'dados' ).AddField( 'id', id ).ToSQL()
 
 
    );
@@ -190,7 +190,7 @@ begin
   CheckEquals(
     'insert into dados ( id ) values ( 2147483640 )',
 
-   TInsertSQL.Builder.Table('dados').AddField( 'id', id ).GetSQL()
+   TInsertSQL.Builder.Table('dados').AddField( 'id', id ).ToSQL()
   );
 end;
 
@@ -205,7 +205,7 @@ begin
   CheckEquals(
     'insert into dados ( id ) values ( 4294967295 )',
 
-     TInsertSQL.Builder().Table('dados').AddField( 'id', id ).GetSQL()
+     TInsertSQL.Builder().Table('dados').AddField( 'id', id ).ToSQL()
 
   );
 
@@ -218,7 +218,7 @@ begin
   id:= 125;
 
   CheckEqualsString( 'insert into dados ( id ) values ( 125 )',
-        TInsertSQL.Builder.Table('dados').AddField( 'id', id ).GetSQL()
+        TInsertSQL.Builder.Table('dados').AddField( 'id', id ).ToSQL()
   );
 
 end;
@@ -235,7 +235,7 @@ begin
     'insert into dados ( id ) values ( 32767 )',
 
 
-      TInsertSQL.Builder().Table( 'dados' ).AddField('id', id).GetSQL()
+      TInsertSQL.Builder().Table( 'dados' ).AddField('id', id).ToSQL()
 
 
 
@@ -265,7 +265,7 @@ begin
   CheckEqualsString(
     'insert into dados ( texto ) values ( ' + QuotedStr( texto ) + ' )',
 
-      TInsertSQL.Builder().Table( 'dados' ).AddField('texto', texto).GetSQL()
+      TInsertSQL.Builder().Table( 'dados' ).AddField('texto', texto).ToSQL()
 
   );
 
@@ -281,7 +281,7 @@ begin
 
   CheckEqualsString(
     'insert into dados ( id ) values ( 65535 )',
-     TInsertSQL.Builder().Table('dados').AddField( 'id', id ).GetSQL()
+     TInsertSQL.Builder().Table('dados').AddField( 'id', id ).ToSQL()
   );
 
 end;
@@ -293,7 +293,7 @@ begin
       .Table( 'clientes' )
       .AddField( 'id', 01 )
       .AddField( 'nm', 'Johni Douglas' )
-      .AddField( 'dt', StrToDateTime( '01/01/2011' ) ).GetSQL()
+      .AddField( 'dt', StrToDateTime( '01/01/2011' ) ).ToSQL()
 
   );
 end;
@@ -304,7 +304,7 @@ begin
     TInsertSQL.Builder()
       .Table( 'clientes' )
       .AddField( 'id', 01 )
-      .AddField( 'nm', 'Johni Douglas' ).GetSQL()
+      .AddField( 'nm', 'Johni Douglas' ).ToSQL()
 
    );
 end;

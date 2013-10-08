@@ -51,7 +51,7 @@ end;
 
 function TCommandSQL.SQL: string;
 begin
-  Result:= BuilderSQL.GetSQL();
+  Result:= BuilderSQL.ToSQL();
 end;
 
 

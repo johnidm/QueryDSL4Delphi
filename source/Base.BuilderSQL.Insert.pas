@@ -8,7 +8,7 @@ uses
 
 type
   TInsertSQL = class( TBuilderSQL )
-    function GetSQL(): string; override;
+    function ToSQL(): string; override;
     class function Builder(): TBuilderSQL;
   end;
 
@@ -23,7 +23,7 @@ end;
 
 
 
-function TInsertSQL.GetSQL: string;
+function TInsertSQL.ToSQL: string;
 begin
   Result:=
     'insert into ' + FTable + ' ( ' +
