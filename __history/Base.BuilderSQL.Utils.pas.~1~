@@ -1,7 +1,0 @@
-unit Base.BuilderSQL.Utils;
-
-interface
-
-implementation
-
-end.
