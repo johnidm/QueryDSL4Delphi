@@ -1,19 +1,48 @@
+{TODO support insert select}
 unit DSL.Core.SQL.DML.Insert;
 
 interface
 
 uses
+  System.StrUtils,
   DSL.Core.SQL, System.Rtti, DSL.Core.Utils, System.Generics.Collections;
 
 type
-  TInsert = class(TSQL)
+
+  IInsert = interface(ISQL)
+    ['{16829AD5-DE0D-473A-8E8A-4969D123DBB4}']
+    function Into(const ATable: string): IInsert;
+    function Field(const AField: string): IInsert;
+    function Value(const AValue: TValue): IInsert;
+  end;
+
+  TInsert = class(TSQL, IInsert)
   strict private
-    TempValue, TempField: string;
+
+  type
+    TFields = class
+    private
+      Field: string;
+      Value: TValue;
+    public
+      constructor Create(const AField: string; const AValue: TValue);
+    end;
+
+  strict private
+    Fields: TObjectList<TFields>;
+
+    Table: string;
+  public
+
+    function Into(const ATable: string): IInsert;
+    function Field(const AField: string): IInsert;
+    function Value(const AValue: TValue): IInsert;
 
   public
-    function Into( const ATable: string ): TInsert;
-    function Field( const AField: string ): TInsert;
-    function Value( const AValue: TValue ): TInsert;
+    function ToSQL(): string; override;
+
+    constructor Create();
+    destructor Destroy(); override;
   end;
 
 implementation
@@ -23,32 +52,68 @@ uses
 
 { TInsert }
 
-
-function TInsert.Into(const ATable: string): TInsert;
+constructor TInsert.Create;
 begin
-  SQL.Append( 'insert into ' + ATable);
+  inherited;
 
-  Result:= Self;
+  Fields := TObjectList<TFields>.Create();
 end;
 
-function TInsert.Field(const AField: string): TInsert;
+destructor TInsert.Destroy;
 begin
-  TempField:= AField;
+  if (Assigned(Fields)) then
+    FreeAndNil(Fields);
 
-  Result:= Self;
+  inherited;
 end;
 
-function TInsert.Value(const AValue: TValue): TInsert;
+function TInsert.Into(const ATable: string): IInsert;
 begin
-  if ( TempValue = EmptyStr ) then
-  begin
-    TempValue:= ValueToSQL( AValue );
-    SQL.Append( ' (' + TempField + ') values (' + TempValue + ')' );
-  end else
-  begin
-  end;
+  Table := ATable;
 
-  Result:= Self;
+  Result := Self;
+end;
+
+function TInsert.ToSQL: string;
+var
+  Index: Integer;
+begin
+  SQL.Clear();
+  SQL.Append('insert into ' + Table + ' (');
+
+  for Index := 0 to Pred(Fields.Count) do
+    SQL.Append(IfThen(Index > 0, ', ') + Fields[Index].Field);
+
+  SQL.Append(') values (');
+
+  for Index := 0 to Pred(Fields.Count) do
+    SQL.Append(IfThen(Index > 0, ', ') + ValueToSQL(Fields[Index].Value));
+
+  SQL.Append(')');
+
+  Result := SQL.ToString;
+end;
+
+function TInsert.Field(const AField: string): IInsert;
+begin
+  Fields.Add(TFields.Create(AField, EmptyStr));
+
+  Result := Self;
+end;
+
+function TInsert.Value(const AValue: TValue): IInsert;
+begin
+  Fields.Last.Value := AValue;
+
+  Result := Self;
+end;
+
+{ TInsert.TFields }
+
+constructor TInsert.TFields.Create(const AField: string; const AValue: TValue);
+begin
+  Field := AField;
+  Value := AValue;
 end;
 
 end.

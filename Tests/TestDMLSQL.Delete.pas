@@ -23,15 +23,15 @@ type
     [TearDown]
     procedure TearDown;
 
-    [Test]
+    //[Test]
     procedure ShouldDeleteBasicWithOutClauseWhere();
-    [Test]
+    //[Test]
     procedure ShouldDeleteBasicWithOutClauseWhereCeneric();
-    [Test]
+    //[Test]
     procedure ShouldDeleteBaseWithClauseWhereEqualOneField();
-    [Test]
+    //[Test]
     procedure ShouldDeleteBaseWithClauseWhereEqualTwoFieldAndEqual();
-    [Test]
+    //[Test]
     procedure ShouldDeleteBaseWithClauseWhereEqualMoreFieldEqual();
 
   end;

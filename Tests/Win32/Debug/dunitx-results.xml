@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<test-results name="F:\BuilderSQL4D\Tests\Win32\Debug\TestBuilder4SQL.exe" total="4" errors="0" failures="0" ignored="0" inconclusive="0" not-run="0" skipped="0" invalid="0" date="2014-03-01" time="0.001">
+  <environment nunit-version="DUnitX" clr-version="2.0.0.0" os-version="6.1.0.0" platform="Windows" cwd="c:\test" machine-name="mymachine" user="vincent" user-domain="finalbuilder.com"  />
+  <culture-info current-culture="en" current-uiculture="en" />
+  <test-suite type="Assembly" name="TestBuilder4SQL.exe" executed="true" result="Success" success="True" time="0.001" asserts="0">
+    <results>
+        <test-suite type="Namespace" name="TestDMLSQL" executed="true" result="Success" success="True" time="0.001" asserts="0" >
+          <results>
+              <test-suite type="Fixture" name="TTestDMLInsert" executed="Success" result="True" success="True" time="0.001" >
+                <results>
+                  <test-case name="Should_Insert_Basic" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                  <test-case name="Should_Insert_Basic_Ceneric" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                  <test-case name="Should_Insert_Two_Fields" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                  <test-case name="Should_Insert_Tree_Fields" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                </results>
+              </test-suite>
+          </results>
+        </test-suite>
+    </results>
+  </test-suite>
+</test-results>

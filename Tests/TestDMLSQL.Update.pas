@@ -14,14 +14,14 @@ type
     [TearDown]
     procedure TearDown;
 
-    [Test]
+    //[Test]
     procedure ShouldUpdateBasicWithOutClauseWhere();
-    [Test]
+    //[Test]
     procedure ShouldUpdateBasicWithOutClauseWhereCeneric();
-    [Test]
+    //[Test]
     procedure ShouldUpdateBasicWithClauseWhereOneField();
 
-    [Test]
+    //[Test]
     procedure ShouldUpdateBaseWithClauseWhereEqualTwoFieldAndEqual();
   end;
 

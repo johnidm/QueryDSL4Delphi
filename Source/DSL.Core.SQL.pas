@@ -18,7 +18,7 @@ type
     function ClauseIn( const AValues: array of TValue ): string;
 
   public
-    function ToSQL(): string;
+    function ToSQL(): string; virtual;
 
 
   public

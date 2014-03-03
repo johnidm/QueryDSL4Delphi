@@ -1,0 +1,87 @@
+unit TestDMLSQL.Insert;
+
+interface
+uses
+  DUnitX.TestFramework, DSL.Core.Builder, DSL.Core.SQL.DML.Insert;
+
+type
+
+  [TestFixture]
+  TTestDMLInsert = class(TObject) 
+  public
+
+    [Test]
+    procedure Should_Insert_Basic();
+    [Test]
+    procedure Should_Insert_Basic_Ceneric();
+    [Test]
+    procedure Should_Insert_Two_Fields();
+    [Test]
+    procedure Should_Insert_Tree_Fields();
+
+  end;
+
+implementation
+
+procedure TTestDMLInsert.Setup;
+begin
+end;
+
+procedure TTestDMLInsert.TearDown;
+begin
+end;
+
+procedure TTestDMLInsert.Should_Insert_Basic;
+var
+  I_SQL, SQL: string;
+
+begin
+  SQL:= 'insert into CUSTOMERS (ID) values (1)';
+  I_SQL:= TBuild<TInsert>.Instance.Into('CUSTOMERS').
+            Field('ID').Value(1).ToSQL;
+
+  Assert.AreEqual( SQL, I_SQL );
+end;
+
+
+procedure TTestDMLInsert.Should_Insert_Basic_Ceneric;
+var
+  I_SQL, SQL: string;
+begin
+  SQL:= 'insert into PAYMENT (ID) values (1)';
+  I_SQL:= TBuilder.Insert.Into('PAYMENT').Field('ID').Value(1).ToSQL;
+
+  Assert.AreEqual(SQL, I_SQL);
+end;
+
+procedure TTestDMLInsert.Should_Insert_Tree_Fields;
+var
+  I_SQL, SQL: string;
+  Insert: TBuild<TInsert>;
+begin
+  SQL:= 'insert into ORDER (ID, NUMBER, FLAG) values (1, 59847, ''C'')';
+  I_SQL:= TBuild<TInsert>.Instance.Into('ORDER').
+            Field('ID').Value(1).
+            Field('NUMBER').Value(59847).
+            Field('FLAG').Value('C').ToSQL;
+
+  Assert.AreEqual( SQL, I_SQL );
+end;
+
+procedure TTestDMLInsert.Should_Insert_Two_Fields;
+var
+  I_SQL, SQL: string;
+
+begin
+  SQL:= 'insert into CUSTOMERS (ID, NAME) values (1, ''Fulano de Tal'')';
+
+  I_SQL:= TBuild<TInsert>.Instance.Into('CUSTOMERS').
+            Field('ID').Value(1).
+            Field('NAME').Value('Fulano de Tal').ToSQL;
+
+  Assert.AreEqual( SQL, I_SQL );
+end;
+
+initialization
+  TDUnitX.RegisterTestFixture(TTestDMLInsert);
+end.
