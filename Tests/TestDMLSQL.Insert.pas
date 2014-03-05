@@ -20,9 +20,22 @@ type
     [Test]
     procedure Should_Insert_Tree_Fields();
 
+    [Test]
+    procedure Should_Insert_DateTime();
+    [Test]
+    procedure Should_Insert_Date();
+    [Test]
+    procedure Should_Insert_Time();
+
+    [Test]
+    procedure Should_Insert_Currency();
+
   end;
 
 implementation
+
+uses
+  System.SysUtils;
 
 procedure TTestDMLInsert.Should_Insert_Basic;
 var
@@ -43,6 +56,72 @@ begin
   Ret := TBuilder.Insert.Into('PAYMENT').Field('ID').Value(1).ToSQL;
 
   Assert.AreEqual(SQL, Ret);
+end;
+
+procedure TTestDMLInsert.Should_Insert_Currency;
+var
+  I_SQL, SQL: string;
+
+  Valor: Currency;
+begin
+  SQL:= 'insert into ORDER (ID, VL_ORDER) values (1, 50.00)';
+
+  Valor:= 50;
+
+  I_SQL:= TBuild<TInsert>.Instance.Into('ORDER').Field('ID').Value(1)
+              .Field('VL_ORDER').Value(Valor).ToSQL;
+
+  Assert.AreEqual( SQL, I_SQL );
+
+end;
+
+procedure TTestDMLInsert.Should_Insert_Date;
+var
+  I_SQL, SQL: string;
+  Date: TDate;
+begin
+  SQL:= 'insert into ORDER (ID, DT_ORDER) values (1, ''01.01.2015'')';
+
+  Date:= StrToDate( '01/01/2015' );
+
+  I_SQL:= TBuild<TInsert>.Instance.Into('ORDER').Field('ID').Value(1)
+              .Field('DT_ORDER').Value(Date).ToSQL;
+
+  Assert.AreEqual( SQL, I_SQL );
+end;
+
+procedure TTestDMLInsert.Should_Insert_DateTime;
+var
+  I_SQL, SQL: string;
+
+  DateTime: TDateTime;
+begin
+  SQL:= 'insert into ORDER (ID, DT_ORDER) values (89, ''01.01.2015 02:10:59'')';
+
+  DateTime:= StrToDateTime( '01/01/2015 02:10:59' );
+  I_SQL:= TBuild<TInsert>.Instance.Into('ORDER').Field('ID').Value(89)
+              .Field('DT_ORDER').Value( DateTime ).ToSQL;
+  Assert.AreEqual( SQL, I_SQL );
+
+
+end;
+
+procedure TTestDMLInsert.Should_Insert_Time;
+var
+  I_SQL, SQL: string;
+
+  Time: TTime;
+begin
+  SQL:=
+   'insert into ORDER (ID, DT_ORDER) values (89, ''02:10:59'')';
+
+  Time:= StrToTime( '02:10:59'  );
+  I_SQL:= TBuild<TInsert>.Instance.Into('ORDER').Field('ID').Value(89)
+              .Field('DT_ORDER').Value(Time).ToSQL;
+
+
+
+  Assert.AreEqual( SQL, I_SQL );
 end;
 
 procedure TTestDMLInsert.Should_Insert_Tree_Fields;
