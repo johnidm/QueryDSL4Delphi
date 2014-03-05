@@ -19,8 +19,8 @@ type
 
   TBuilder = class
   public
-    function Delete: TDelete;
-    function Update: TUpdate;
+    class function Delete: TDelete;
+    class function Update: TUpdate;
     class function Insert: TInsert;
   end;
 
@@ -29,7 +29,7 @@ implementation
 
 { TBuilder }
 
-function TBuilder.Delete: TDelete;
+class function TBuilder.Delete: TDelete;
 begin
   Result:= TDelete.Create();
 end;
@@ -39,7 +39,7 @@ begin
   Result:= TInsert.Create();
 end;
 
-function TBuilder.Update: TUpdate;
+class function TBuilder.Update: TUpdate;
 begin
    Result:= TUpdate.Create();
 end;

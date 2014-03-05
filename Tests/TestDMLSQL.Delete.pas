@@ -23,15 +23,15 @@ type
     [TearDown]
     procedure TearDown;
 
-    //[Test]
+    [Test]
     procedure ShouldDeleteBasicWithOutClauseWhere();
-    //[Test]
+    [Test]
     procedure ShouldDeleteBasicWithOutClauseWhereCeneric();
-    //[Test]
+    [Test]
     procedure ShouldDeleteBaseWithClauseWhereEqualOneField();
-    //[Test]
+    [Test]
     procedure ShouldDeleteBaseWithClauseWhereEqualTwoFieldAndEqual();
-    //[Test]
+    [Test]
     procedure ShouldDeleteBaseWithClauseWhereEqualMoreFieldEqual();
 
   end;
@@ -52,10 +52,10 @@ end;
 procedure TTestDMLDelete.shouldDeleteBaseWithClauseWhereEqualOneField;
 var
   SQL, B_SQL: string;
-  Delete: TBuild<TDelete>;
+
 begin
   SQL:= 'delete from SALlERS where ID = 9';
-  B_SQL:= Delete.Instance.From('SALlERS').Where().Field('ID').Equal(9).ToSQL;
+  B_SQL:= TBuild<TDelete>.Instance.From('SALlERS').Where().Field('ID').Equal(9).ToSQL;
   Assert.AreEqual( SQL, B_SQL );
 
   {
@@ -72,18 +72,18 @@ begin
   }
 
   SQL:= 'delete from SALlERS where ID in (9, 10, 15, 20)';
-  B_SQL:= Delete.Instance.From('SALlERS').Where().Field('ID').&In([9, 10, 15, 20]).ToSQL;
+  B_SQL:= TBuild<TDelete>.Instance.From('SALlERS').Where().Field('ID').&In([9, 10, 15, 20]).ToSQL;
   Assert.AreEqual( SQL, B_SQL );
 end;
 
 procedure TTestDMLDelete.shouldDeleteBaseWithClauseWhereEqualTwoFieldAndEqual;
 var
   B_SQL, SQL: string;
-  Delete: TBuild<TDelete>;
+
 begin
   SQL:= 'delete from SALLERS where ID = 1 and NAME = ''JOHN''';
 
-  B_SQL:= Delete.Instance.From('SALLERS').Where().Field('ID').Equal(1).&And.Field('NAME').Equal('JOHN').ToSQL;
+  B_SQL:= TBuild<TDelete>.Instance.From('SALLERS').Where().Field('ID').Equal(1).&And.Field('NAME').Equal('JOHN').ToSQL;
 
   Assert.AreEqual( SQL, B_SQL );
 end;
@@ -92,12 +92,11 @@ procedure TTestDMLDelete.shouldDeleteBasicWithOutClauseWhere;
 var
   SQLBuilder, SQL: string;
 
-  Delete: TBuild<TDelete>;
 begin
   SQL:= 'delete from CUSTOMERS';
 
   SQLBuilder:=
-    Delete.Instance.From('CUSTOMERS').ToSQL;
+    TBuild<TDelete>.Instance.From('CUSTOMERS').ToSQL;
 
   Assert.AreEqual( SQL, SQLBuilder );
 end;
@@ -106,12 +105,11 @@ procedure TTestDMLDelete.shouldDeleteBasicWithOutClauseWhereCeneric;
 var
   SQLBuilder, SQL: string;
 
-  Builder: TBuilder;
 begin
   SQL:= 'delete from PRODUCTS';
 
   SQLBuilder:=
-    Builder.Delete.From('PRODUCTS').ToSQL;
+    TBuilder.Delete.From('PRODUCTS').ToSQL;
 
   Assert.AreEqual( SQL, SQLBuilder );
 end;

@@ -14,14 +14,13 @@ type
     [TearDown]
     procedure TearDown;
 
-    //[Test]
+    [Test]
     procedure ShouldUpdateBasicWithOutClauseWhere();
-    //[Test]
+    [Test]
     procedure ShouldUpdateBasicWithOutClauseWhereCeneric();
-    //[Test]
+    [Test]
     procedure ShouldUpdateBasicWithClauseWhereOneField();
-
-    //[Test]
+    [Test]
     procedure ShouldUpdateBaseWithClauseWhereEqualTwoFieldAndEqual();
   end;
 
@@ -39,12 +38,12 @@ procedure TTestDMLUpdate.ShouldUpdateBaseWithClauseWhereEqualTwoFieldAndEqual;
 var
   U_SQL, SQL: string;
 
-  Update: TBuild<TUpdate>;
+
 begin
   SQL:=
     'update PRODUCTS set DESCRIPTION = ''Smartfone Nokia'', COST = 0 where ID = 9 and COST = 50';
 
-  U_SQL:= Update.Instance.Table( 'PRODUCTS' ).&Set.
+  U_SQL:= TBuild<TUpdate>.Instance.Table( 'PRODUCTS' ).&Set.
                  Field('DESCRIPTION').Value('Smartfone Nokia').Comma().
                  Field('COST').Value(0).
                  Where().Field('ID').Equal(9).&And.
@@ -58,17 +57,17 @@ procedure TTestDMLUpdate.ShouldUpdateBasicWithClauseWhereOneField;
 var
   __SQL, U_SQL: string;
 
-  Update: TBuild<TUpdate>;
+
 begin
   __SQL:= 'update CUSTOMERS set NAME = ''Ciclano de Tal'' where ID = 1';
-  U_SQL:= Update.Instance.
+  U_SQL:= TBuild<TUpdate>.Instance.
           Table( 'CUSTOMERS' ).&Set().
           Field('NAME').Value('Ciclano de Tal').
           Where().Field('ID').Equal(1).ToSQL;
   Assert.AreEqual( __SQL, U_SQL );
 
   __SQL:= 'update CUSTOMERS set NAME = ''Ciclano de Tal'' where ID in (1, 2, 5, 8, 100)';
-  U_SQL:= Update.Instance.
+  U_SQL:= TBuild<TUpdate>.Instance.
           Table( 'CUSTOMERS' ).&Set().
           Field('NAME').Value('Ciclano de Tal').
           Where().Field('ID').&In([1, 2, 5, 8, 100]).ToSQL;
@@ -79,11 +78,11 @@ procedure TTestDMLUpdate.ShouldUpdateBasicWithOutClauseWhere;
 var
   U_SQL, SQL: string;
 
-  Update: TBuild<TUpdate>;
+
 begin
   SQL:= 'update CUSTOMERS set NAME = ''Fulano De Tal''';
 
-  U_SQL:= Update.Instance.Table('CUSTOMERS').&Set().Field('NAME').Value( 'Fulano De Tal' ).ToSQL();
+  U_SQL:= TBuild<TUpdate>.Instance.Table('CUSTOMERS').&Set().Field('NAME').Value( 'Fulano De Tal' ).ToSQL();
 
   Assert.AreEqual( SQL, U_SQL );
 end;
@@ -94,11 +93,10 @@ procedure TTestDMLUpdate.ShouldUpdateBasicWithOutClauseWhereCeneric;
 var
   U_SQL, SQL: string;
 
-  Builder: TBuilder;
 begin
   SQL:= 'update PRODUCTS set COST = 0';
 
-  U_SQL:= Builder.Update.Table('PRODUCTS').&Set().Field('COST').Value( 0 ).ToSQL;
+  U_SQL:= TBuilder.Update.Table('PRODUCTS').&Set().Field('COST').Value( 0 ).ToSQL;
 
   Assert.AreEqual( SQL, U_SQL );
 end;
