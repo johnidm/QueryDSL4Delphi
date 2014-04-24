@@ -1,11 +1,11 @@
-{TODO support insert select}
+{ TODO support insert select }
 unit DSL.Core.SQL.DML.Insert;
 
 interface
 
 uses
   System.StrUtils,
-  DSL.Core.SQL, System.Rtti, DSL.Core.Utils, System.Generics.Collections;
+  DSL.Core.SQL, System.Rtti, DSL.Core.SQL.Utils, System.Generics.Collections;
 
 type
 
@@ -18,7 +18,6 @@ type
 
   TInsert = class(TSQL, IInsert)
   strict private
-
   type
     TFields = class
     private

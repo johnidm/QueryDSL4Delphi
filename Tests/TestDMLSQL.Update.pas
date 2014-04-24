@@ -2,7 +2,7 @@ unit TestDMLSQL.Update;
 
 interface
 uses
-  DUnitX.TestFramework, DSL.Core.SQL.DML.Update, DSL.Core.Builder;
+  DUnitX.TestFramework, DSL.Core.SQL.DML.Update, DSL.Core.SQL.Builder;
 
 type
 

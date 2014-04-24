@@ -12,7 +12,7 @@ unit TestDMLSQL.Delete;
 
 interface
 uses
-  DUnitX.TestFramework, DSL.Core.Builder;
+  DUnitX.TestFramework, DSL.Core.SQL.Builder;
 
 type
   [TestFixture]

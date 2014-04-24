@@ -2,7 +2,7 @@ unit DSL.Core.SQL.DML.Update;
 
 interface
 
-uses DSL.Core.SQL, System.Rtti, DSL.Core.Utils;
+uses DSL.Core.SQL, System.Rtti, DSL.Core.SQL.Utils;
 
 type
   TUpdate = class( TSQL )

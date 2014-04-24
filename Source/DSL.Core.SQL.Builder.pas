@@ -1,4 +1,4 @@
-unit DSL.Core.Builder;
+unit DSL.Core.SQL.Builder;
 
 interface
 
@@ -6,7 +6,7 @@ uses
   System.SysUtils,
   System.Rtti,
   DSL.Core.SQL.DML.Delete,
-  DSL.Core.Utils,
+  DSL.Core.SQL.Utils,
   DSL.Core.SQL.DML.Update,
   DSL.Core.SQL.DML.Insert;
 

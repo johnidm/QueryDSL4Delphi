@@ -106,8 +106,8 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="TestDMLSQL.Delete.pas"/>
-        <DCCReference Include="..\Source\DSL.Core.Builder.pas"/>
-        <DCCReference Include="..\Source\DSL.Core.Utils.pas"/>
+        <DCCReference Include="..\Source\DSL.Core.SQL.Builder.pas"/>
+        <DCCReference Include="..\Source\DSL.Core.SQL.Utils.pas"/>
         <DCCReference Include="..\Source\DSL.Core.SQL.pas"/>
         <DCCReference Include="..\Source\DSL.Core.SQL.DML.Delete.pas"/>
         <DCCReference Include="..\Source\DSL.Core.SQL.DML.Update.pas"/>
@@ -190,11 +190,3 @@
     <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
 </Project>
-
-<!-- EurekaLog First Line
-[Exception Log]
-EurekaLog Version=7001
-Activate=0
-DeleteMapAfterCompile=1
-Encrypt Password=""
-EurekaLog Last Line -->

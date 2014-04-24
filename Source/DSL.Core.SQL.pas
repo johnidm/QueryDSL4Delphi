@@ -3,7 +3,7 @@ unit DSL.Core.SQL;
 interface
 
 uses
-  System.SysUtils, System.Rtti, DSL.Core.Utils;
+  System.SysUtils, System.Rtti, DSL.Core.SQL.Utils;
 
 type
   ISQL = interface

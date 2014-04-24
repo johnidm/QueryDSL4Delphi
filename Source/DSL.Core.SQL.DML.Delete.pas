@@ -3,7 +3,7 @@ unit DSL.Core.SQL.DML.Delete;
 interface
 
 uses
-  DSL.Core.SQL, System.SysUtils, System.Rtti, DSL.Core.Utils;
+  DSL.Core.SQL, System.SysUtils, System.Rtti, DSL.Core.SQL.Utils;
 
 type
   TDelete = class( TSQL )

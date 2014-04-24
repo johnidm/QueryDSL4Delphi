@@ -3,7 +3,7 @@ unit TestDMLSQL.Insert;
 interface
 
 uses
-  DUnitX.TestFramework, DSL.Core.Builder, DSL.Core.SQL.DML.Insert;
+  DUnitX.TestFramework, DSL.Core.SQL.Builder, DSL.Core.SQL.DML.Insert;
 
 type
 
