@@ -11,16 +11,12 @@ type
     function ToSQL(): string;
   end;
 
-  TSQL = class( TInterfacedObject, ISQL )
+  TSQL = class(TInterfacedObject, ISQL)
   strict protected
     SQL: TStringBuilder;
-
-    function ClauseIn( const AValues: array of TValue ): string;
-
+    function ClauseIn(const AValues: array of TValue): string;
   public
     function ToSQL(): string; virtual;
-
-
   public
     constructor Create();
     destructor Destroy; override;
@@ -33,41 +29,41 @@ uses
 
 function TSQL.ClauseIn(const AValues: array of TValue): string;
 var
-  //Value: TValue;
+  // Value: TValue;
   Aux: string;
   Index: Integer;
 begin
-  {TODO esta duplicada mover para outro lugar}
+  { TODO esta duplicada mover para outro lugar }
 
-  Aux:= EmptyStr;
+  Aux := EmptyStr;
 
   { TODO Perguntar no stackoverflow
-  for Value in AValues do
+    for Value in AValues do
     Aux:= IfThen( Length(AValues) > 1, ', ' ) +  Aux + ValueToSQL( Value );
   }
   for Index := Low(AValues) to High(AValues) do
-    Aux:=  Aux + IfThen( Index > 0, ', ' ) + ValueToSQL( AValues[Index] );
+    Aux := Aux + IfThen(Index > 0, ', ') + ValueToSQL(AValues[Index]);
 
-  SQL.Append( ' in (' + Aux + ')' );
+  SQL.Append(' in (' + Aux + ')');
 end;
 
 constructor TSQL.Create;
 begin
-  SQL:= TStringBuilder.Create();
+  SQL := TStringBuilder.Create();
   SQL.Clear();
 end;
 
 destructor TSQL.Destroy;
 begin
-  if ( Assigned( SQL ) ) then
-    FreeAndNil( SQL);
+  if (Assigned(SQL)) then
+    FreeAndNil(SQL);
 
   inherited;
 end;
 
 function TSQL.ToSQL: string;
 begin
-   Result:= SQL.ToString;
+  Result := SQL.ToString;
 end;
 
 end.

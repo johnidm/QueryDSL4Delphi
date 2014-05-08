@@ -20,14 +20,14 @@ type
     [Test]
     procedure Should_Insert_Tree_Fields();
 
-    [Test]
+    //[Test]
     procedure Should_Insert_DateTime();
-    [Test]
+    //[Test]
     procedure Should_Insert_Date();
-    [Test]
+    //[Test]
     procedure Should_Insert_Time();
 
-    [Test]
+    //[Test]
     procedure Should_Insert_Currency();
 
   end;

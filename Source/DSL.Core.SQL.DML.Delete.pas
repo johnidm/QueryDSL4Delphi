@@ -6,14 +6,14 @@ uses
   DSL.Core.SQL, System.SysUtils, System.Rtti, DSL.Core.SQL.Utils;
 
 type
-  TDelete = class( TSQL )
+  TDelete = class(TSQL)
   public
     function From(const ATable: string): TDelete;
     function Where(): TDelete;
-    function Field( const AField: string ): TDelete;
-    function Equal( const AField: TValue ): TDelete;
+    function Field(const AField: string): TDelete;
+    function Equal(const AField: TValue): TDelete;
     function &And(): TDelete;
-    function &In( const AValues: array of TValue ): TDelete;
+    function &In(const AValues: array of TValue): TDelete;
   end;
 
 implementation
@@ -25,50 +25,46 @@ uses
 
 function TDelete.&In(const AValues: array of TValue): TDelete;
 begin
-  ClauseIn( AValues );
+  ClauseIn(AValues);
 
-  Result:= Self;
+  Result := Self;
 end;
 
 function TDelete.&And(): TDelete;
 begin
-  SQL.Append( ' and ' );
+  SQL.Append(' and ');
 
-  Result:= Self;
+  Result := Self;
 end;
 
 function TDelete.Equal(const AField: TValue): TDelete;
 begin
-  SQL.Append(' = ' + ValueToSQL( AField ) );
+  SQL.Append(' = ' + ValueToSQL(AField));
 
-
-  Result:= Self;
+  Result := Self;
 end;
 
 function TDelete.Field(const AField: string): TDelete;
 begin
-  SQL.Append( AField );
+  SQL.Append(AField);
 
-
-  Result:= Self;
+  Result := Self;
 end;
 
 function TDelete.From(const ATable: string): TDelete;
 begin
-  SQL.Append( 'delete from ' ); { TODO mudar para outro lugar esse código }
+  SQL.Append('delete from '); { TODO mudar para outro lugar esse código }
 
-  SQL.Append( ATable );
+  SQL.Append(ATable);
 
-
-  Result:= Self;
+  Result := Self;
 end;
 
 function TDelete.Where: TDelete;
 begin
-  SQL.Append( ' where ' );
+  SQL.Append(' where ');
 
-
-  Result:= Self;
+  Result := Self;
 end;
 
 end.

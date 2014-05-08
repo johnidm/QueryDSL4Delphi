@@ -24,7 +24,6 @@ type
     class function Insert: TInsert;
   end;
 
-
 implementation
 
 { TBuilder }
@@ -50,7 +49,5 @@ class function TBuild<T>.Instance: T;
 begin
   Result:= T.Create();
 end;
-
-
 
 end.

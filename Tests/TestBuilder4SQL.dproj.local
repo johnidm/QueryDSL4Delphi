@@ -33,7 +33,7 @@
     <Transaction>2014/02/28 16:56:35.000.050,\\VBOXSVR\d_drive\projetos-estudo\BuilderSQL4D\Tests\TestDMLSQL.Insert.pas=\\VBOXSVR\d_drive\projetos-estudo\BuilderSQL4D\Tests\Unit1.pas</Transaction>
     <Transaction>2014/02/28 16:59:24.000.181,=\\VBOXSVR\d_drive\projetos-estudo\BuilderSQL4D\Tests\Unit1.pas</Transaction>
     <Transaction>2014/02/28 16:59:42.000.391,\\VBOXSVR\d_drive\projetos-estudo\BuilderSQL4D\Source\DSL.Core.SQL.DML.Insert.pas=\\VBOXSVR\d_drive\projetos-estudo\BuilderSQL4D\Tests\Unit1.pas</Transaction>
-    <Transaction>2014/04/24 15:47:42.347,D:\projetos-estudo\BuilderSQL4D\Source\DSL.Core.SQL.Builder.pas=D:\projetos-estudo\BuilderSQL4D\Source\DSL.Core.Builder.pas</Transaction>
-    <Transaction>2014/04/24 15:47:54.872,D:\projetos-estudo\BuilderSQL4D\Source\DSL.Core.SQL.Utils.pas=D:\projetos-estudo\BuilderSQL4D\Source\DSL.Core.Utils.pas</Transaction>
+    <Transaction>2014/04/24 15:47:42.000.347,D:\projetos-estudo\BuilderSQL4D\Source\DSL.Core.SQL.Builder.pas=D:\projetos-estudo\BuilderSQL4D\Source\DSL.Core.Builder.pas</Transaction>
+    <Transaction>2014/04/24 15:47:54.000.872,D:\projetos-estudo\BuilderSQL4D\Source\DSL.Core.SQL.Utils.pas=D:\projetos-estudo\BuilderSQL4D\Source\DSL.Core.Utils.pas</Transaction>
   </Transactions>
 </BorlandProject>
